@@ -1,0 +1,13 @@
+# file system
+.DS_Store
+
+# ide
+**/.idea
+
+venv/**
+
+**/__pycache__
+
+pulsar_admin.egg-info/**
+build/**
+dist/**

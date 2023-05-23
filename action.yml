@@ -1,0 +1,32 @@
+name: 'Host Available Check Action'
+description: 'Checks if a host is available'
+
+inputs:
+  check_type:
+    description: 'The type of check to perform'
+    required: true
+  check_timeout:
+    description: 'The maximum amount of time to wait for a check to complete, in seconds'
+    required: false
+  check_http_port:
+    description: 'The HTTP port to check, if performing an HTTP check'
+    required: false
+  check_http_path:
+    description: 'The HTTP path to check, if performing an HTTP check'
+    required: false
+  check_tcp_port:
+    description: 'The TCP port to check, if performing an TCP check'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Run Host Available Check Action'
+      run: python $GITHUB_ACTION_PATH/main.py
+      shell: bash
+      env:
+        INPUT_CHECK_TYPE: ${{ inputs.check_type }}
+        INPUT_CHECK_TIMEOUT: ${{ inputs.check_timeout }}
+        INPUT_CHECK_HTTP_PORT: ${{ inputs.check_http_port }}
+        INPUT_CHECK_HTTP_PATH: ${{ inputs.check_http_path }}
+        INPUT_CHECK_TCP_PORT: ${{ inputs.check_tcp_port }}
